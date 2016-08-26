@@ -144,6 +144,8 @@ static void main_window_unload(Window* window) {
 }
 
 static void init() {
+  setlocale(LC_TIME, "");
+
   s_main_window = window_create();
 
   window_set_background_color(s_main_window, GColorBlack);
