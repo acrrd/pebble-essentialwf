@@ -1,0 +1,33 @@
+{
+  "name": "essentialwf",
+  "author": "Andrea Corradi",
+  "version": "1.0.0",
+  "keywords": [],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Essential WF",
+    "uuid": "3ab82cfe-1496-478f-8ea3-6e705ffcf851",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "messageKeys": [],
+    "resources": {
+      "media": [
+        {
+          "file": "images/nobt_icon.png",
+          "name": "IMAGE_NOBT_ICON",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        }
+      ]
+    }
+  }
+}
