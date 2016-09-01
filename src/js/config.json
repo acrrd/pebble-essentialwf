@@ -1,0 +1,33 @@
+[
+{
+  "type": "heading",
+  "defaultValue": "Essential WF Configuration"
+},
+{
+  "type": "section",
+  "items": [
+    {
+      "type": "select",
+      "id": "date_format",
+      "messageKey": "DATE_FORMAT",
+      "label": "Date Format",
+      "defaultValue" : 0,
+      "options": [
+        {
+          "label": "YYYY/MM/DD",
+          "value": 0
+        },
+        {
+          "label": "MM/DD/YYYY",
+          "value": 1
+        },
+        {
+          "label": "DD/MM/YYYY",
+          "value": 2
+        }
+      ]
+    },
+      { "type": "submit", "defaultValue": "Done" }
+  ]
+}
+]

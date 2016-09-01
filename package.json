@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "keywords": [],
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "pebble-clay": "^1.0.2"
+  },
   "pebble": {
     "displayName": "Essential WF",
     "uuid": "3ab82cfe-1496-478f-8ea3-6e705ffcf851",
@@ -18,7 +20,12 @@
     "watchapp": {
       "watchface": true
     },
-    "messageKeys": [],
+    "capabilities": [
+      "configurable"
+    ],
+    "messageKeys": [
+      "DATE_FORMAT"
+    ],
     "resources": {
       "media": [
         {

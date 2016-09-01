@@ -8,6 +8,10 @@ static TextLayer* s_battery_layer;
 static BitmapLayer* s_bt_icon_layer;
 static GBitmap* s_bt_icon_bitmap;
 
+static int8_t date_format_conf;
+static char date_formats[][15] = {"%a %Y/%m/%d", "%a %m/%d/%Y", "%a %d/%m/%Y"};
+static char* date_format = date_formats[0];
+
 static void update_time() {
   time_t temp = time(NULL);
   struct tm* tick_time = localtime(&temp);
@@ -34,7 +38,7 @@ static void update_time() {
   text_layer_set_text(s_time_layer, s_buffer);
 
   static char date_buffer[15];
-  strftime(date_buffer, sizeof(date_buffer), "%a %Y/%m/%d", tick_time);
+  strftime(date_buffer, sizeof(date_buffer), date_format, tick_time);
   text_layer_set_text(s_date_layer, date_buffer);
 }
 
@@ -52,6 +56,17 @@ static void battery_callback(BatteryChargeState state) {
 
 static void bluetooth_callback(bool connected) {
   layer_set_hidden(bitmap_layer_get_layer(s_bt_icon_layer), connected);
+}
+
+static void inbox_received_handler(DictionaryIterator* iter, void* context) {
+  Tuple* date_format_conf = dict_find(iter, MESSAGE_KEY_DATE_FORMAT);
+  if (date_format_conf) {
+    int8_t date_format_index = date_format_conf->value->int8;
+    if (date_format_index >= 0 && date_format_index < 3) {
+      date_format = date_formats[date_format_index];
+      update_time();
+    }
+  }
 }
 
 static void main_window_load(Window* window) {
@@ -171,6 +186,10 @@ static void init() {
       .pebble_app_connection_handler = bluetooth_callback});
 
   bluetooth_callback(connection_service_peek_pebble_app_connection());
+
+  // Init AppMessage
+  app_message_register_inbox_received(inbox_received_handler);
+  app_message_open(128, 128);
 }
 
 static void deinit() {
