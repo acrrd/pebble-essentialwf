@@ -15,6 +15,7 @@ Pebble.addEventListener('webviewclosed', function(e) {
   var settings = clay.getSettings(e.response, false);
 
   settings.DATE_FORMAT = parseInt(settings.DATE_FORMAT.value);
+  settings.DAY_FORMAT = parseInt(settings.DAY_FORMAT.value);
 
   settings = Clay.prepareSettingsForAppMessage(settings);
 

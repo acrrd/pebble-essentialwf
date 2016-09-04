@@ -27,7 +27,28 @@
         }
       ]
     },
-      { "type": "submit", "defaultValue": "Done" }
+    {
+      "type": "select",
+      "id": "day_format",
+      "messageKey": "DAY_FORMAT",
+      "label": "Day name",
+      "defaultValue" : 0,
+      "options": [
+        {
+          "label": "Left",
+          "value": 0
+        },
+        {
+          "label": "Right",
+          "value": 1
+        },
+        {
+          "label": "None",
+          "value": 2
+        }
+      ]
+    },
+    { "type": "submit", "defaultValue": "Done" }
   ]
 }
 ]

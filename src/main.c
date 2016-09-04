@@ -10,8 +10,6 @@ static TextLayer* s_battery_layer;
 static BitmapLayer* s_bt_icon_layer;
 static GBitmap* s_bt_icon_bitmap;
 
-static char date_formats[][15] = {"%a %Y/%m/%d", "%a %m/%d/%Y", "%a %d/%m/%Y"};
-
 static void update_time() {
   time_t temp = time(NULL);
   struct tm* tick_time = localtime(&temp);
@@ -38,8 +36,8 @@ static void update_time() {
   text_layer_set_text(s_time_layer, s_buffer);
 
   static char date_buffer[15];
-  strftime(date_buffer, sizeof(date_buffer),
-           date_formats[settings.date_format_index], tick_time);
+  strftime(date_buffer, sizeof(date_buffer), settings.full_date_format,
+           tick_time);
   text_layer_set_text(s_date_layer, date_buffer);
 }
 
@@ -64,7 +62,10 @@ static void inbox_received_handler(DictionaryIterator* iter, void* context) {
   if (date_format_conf) {
     settings_set_date_format_index(date_format_conf->value->int32);
   }
-
+  Tuple* day_format_conf = dict_find(iter, MESSAGE_KEY_DAY_FORMAT);
+  if (day_format_conf) {
+    settings_set_day_format_index(day_format_conf->value->int32);
+  }
   settings_save();
   update_time();
 }

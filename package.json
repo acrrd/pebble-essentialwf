@@ -24,7 +24,8 @@
       "configurable"
     ],
     "messageKeys": [
-      "DATE_FORMAT"
+      "DATE_FORMAT",
+      "DAY_FORMAT"
     ],
     "resources": {
       "media": [
